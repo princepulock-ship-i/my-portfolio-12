@@ -16,20 +16,6 @@
 }
 
 
-
-.about-profile-circle {
-  width: 2000px;
-  height: 2000px;
-  border-radius: 50%;
-}
-
-.about-profile-circle img {
-  width: 200%;
-  height: 200%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
 .about-contact a {
   font-size: 25px !important;
   line-height: 1.3 !important;
@@ -2585,34 +2571,57 @@ body {
 }
 
 
-/* MOVIE + FLYERS LAG FIX
-   Ei two section e heavy 8K images thakar jonno lag hocchilo.
-   Image decode late hobe, hover shadow kombe, scroll smooth thakbe. */
-#movie-artwork,
-#flyers-design {
+/* ===== ULTRA FAST WEBSITE LOAD FIX ===== */
+
+/* Same-to-same layout thakbe, but offscreen section full render hobe na */
+.section {
   content-visibility: auto !important;
-  contain-intrinsic-size: 1200px !important;
-  contain: layout paint style !important;
+  contain-intrinsic-size: 1000px !important;
 }
 
-#movie-artwork img,
-#flyers-design img {
-  background: transparent !important;
+/* Image paint cost komano */
+img,
+.zoom-img {
+  backface-visibility: hidden !important;
+  transform: translateZ(0);
+}
+
+/* Heavy sections e glow/shadow kom — scroll lag kombe */
+#movie-artwork .zoom-img,
+#flyers-design .zoom-img,
+#real-estate .zoom-img {
   box-shadow: none !important;
   will-change: auto !important;
 }
 
 #movie-artwork .zoom-img:hover,
-#flyers-design .zoom-img:hover {
+#flyers-design .zoom-img:hover,
+#real-estate .zoom-img:hover {
   transform: none !important;
   filter: brightness(1.03) !important;
   box-shadow: none !important;
 }
 
-/* Avoid huge paint cost in flyer cover */
-#flyers-design .flyer-hero,
-#movie-artwork .last-hero {
-  box-shadow: none !important;
+/* Phone e heavy animation off, laptop e layout same thakbe */
+@media (max-width: 899px), (hover: none) and (pointer: coarse) {
+  .zoom-img:hover {
+    transform: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+  }
+
+  .intro-splash span,
+  .ending-aurora,
+  .ending-orbit,
+  .ending-rings span,
+  .ending-sparkles span {
+    animation: none !important;
+  }
+}
+
+/* Scroll smooth off = less lag */
+html {
+  scroll-behavior: auto !important;
 }
 
 </style>
@@ -2701,7 +2710,7 @@ body {
        <p class="about-title">Graphic Designer & Creative Visual Designer</p>
 
       <div class="about-profile-wrap">
-        <img class="zoom-img about-profile" src="ppp.png" alt="Profile Picture" onerror="this.style.display='none';" decoding="async" loading="eager">
+        <img class="zoom-img about-profile" src="ppp.png" alt="Profile Picture" onerror="this.style.display='none';" loading="eager" decoding="async" fetchpriority="high">
       </div>
     </div>
 
@@ -2740,19 +2749,19 @@ I believe great design is more than just aesthetics — it is an experience that
 
         <div class="software-icons">
           <div class="software-slot">
-            <img src="4.png" alt="Photoshop Icon" decoding="async" loading="eager">
+            <img src="4.png" alt="Photoshop Icon" loading="eager" decoding="async" fetchpriority="high">
           </div>
 
           <div class="software-slot">
-            <img src="2.png" alt="Illustrator Icon" decoding="async" loading="eager">
+            <img src="2.png" alt="Illustrator Icon" loading="eager" decoding="async" fetchpriority="high">
           </div>
 
           <div class="software-slot">
-            <img src="3.png" alt="InDesign Icon" decoding="async" loading="eager">
+            <img src="3.png" alt="InDesign Icon" loading="eager" decoding="async" fetchpriority="high">
           </div>
 
           <div class="software-slot">
-            <img src="1.png" alt="Canva Icon" decoding="async" loading="eager">
+            <img src="1.png" alt="Canva Icon" loading="eager" decoding="async" fetchpriority="high">
           </div>
         </div>
       </div>
@@ -2796,16 +2805,16 @@ I believe great design is more than just aesthetics — it is an experience that
 
 <section class="section brand-section" id="brand-identity">
   <div class="brand-cover-row">
-    <img width="7680" height="4320" class="zoom-img brand-cover" src="visual identy cover.png" alt="Brand Identity Cover" decoding="async" loading="eager">
+    <img width="7680" height="4320" class="zoom-img brand-cover" src="visual identy cover.png" alt="Brand Identity Cover" loading="eager" decoding="async" fetchpriority="high">
   </div>
 
   <div class="brand-wrap">
     <div class="brand-content">
       <div class="brand-top-with-text">
         <div class="brand-top-row">
-        <img class="zoom-img brand-img1" src="brand identity 5.png" alt="Brand 1" loading="lazy" decoding="async">
-        <img class="zoom-img brand-img2" src="brand identity 4.png" alt="Brand 2" loading="lazy" decoding="async">
-        <img class="zoom-img brand-img3" src="brand identity.png" alt="Brand 3" loading="lazy" decoding="async">
+        <img class="zoom-img brand-img1" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="brand identity 5.png" alt="Brand 1" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="zoom-img brand-img2" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="brand identity 4.png" alt="Brand 2" loading="lazy" decoding="async" fetchpriority="low">
+        <img class="zoom-img brand-img3" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="brand identity.png" alt="Brand 3" loading="lazy" decoding="async" fetchpriority="low">
       </div>
 
 
@@ -2819,8 +2828,8 @@ I believe great design is more than just aesthetics — it is an experience that
       </div>
 
       
-      <img width="7680" height="4320" class="zoom-img brand-wide" src="brand identity 2 copy.png" alt="Brand 4" loading="lazy" decoding="async">
-      <img width="7680" height="4320" class="zoom-img brand-wide" src="brand identity 3.png" alt="Brand 5" loading="lazy" decoding="async">
+      <img width="7680" height="4320" class="zoom-img brand-wide" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="brand identity 2 copy.png" alt="Brand 4" loading="lazy" decoding="async" fetchpriority="low">
+      <img width="7680" height="4320" class="zoom-img brand-wide" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="brand identity 3.png" alt="Brand 5" loading="lazy" decoding="async" fetchpriority="low">
       <div class="tomfort-wrap">
         <div class="tomfort-text">
           <h2>TomFort</h2>
@@ -2831,12 +2840,12 @@ I believe great design is more than just aesthetics — it is an experience that
 
         <div class="tomfort-content">
           <div class="brand-right-row">
-            <img class="zoom-img brand-small" src="cap mock 1.png" alt="Brand 6" loading="lazy" decoding="async">
-            <img class="zoom-img brand-small" src="hoodie mock up f.png" alt="Brand 7" loading="lazy" decoding="async">
-            <img class="zoom-img brand-small" src="brand logo tom.png" alt="Brand 8" loading="lazy" decoding="async">
+            <img class="zoom-img brand-small" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cap mock 1.png" alt="Brand 6" loading="lazy" decoding="async" fetchpriority="low">
+            <img class="zoom-img brand-small" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="hoodie mock up f.png" alt="Brand 7" loading="lazy" decoding="async" fetchpriority="low">
+            <img class="zoom-img brand-small" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="brand logo tom.png" alt="Brand 8" loading="lazy" decoding="async" fetchpriority="low">
           </div>
 
-          <img width="7680" height="4320" class="zoom-img brand-banner" src="topfort mockp.png big 1.png" alt="Brand 9" loading="lazy" decoding="async">
+          <img width="7680" height="4320" class="zoom-img brand-banner" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="topfort mockp.png big 1.png" alt="Brand 9" loading="lazy" decoding="async" fetchpriority="low">
         </div>
       </div>
     </div>
@@ -2845,21 +2854,21 @@ I believe great design is more than just aesthetics — it is an experience that
 
 <section class="section" id="social-media">
   <div class="center hero-wrap">
-    <img width="7680" height="4320" class="zoom-img hero" src="social midia png.png" alt="Hero" loading="lazy" decoding="async">
+    <img width="7680" height="4320" class="zoom-img hero" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="social midia png.png" alt="Hero" loading="lazy" decoding="async" fetchpriority="low">
   </div>
 
   <div class="left slot-1-3">
     <div class="square-grid">
-      <img class="zoom-img square" src="food poster.jpg" alt="1" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="PIZZA POSTER.jpg" alt="2" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="coffee poster.jpg" alt="3" loading="lazy" decoding="async">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="food poster.jpg" alt="1" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="PIZZA POSTER.jpg" alt="2" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="coffee poster.jpg" alt="3" loading="lazy" decoding="async" fetchpriority="low">
     </div>
   </div>
 
   <div class="image-text-row">
     <div class="a4-two">
-      <img class="zoom-img a4" src="shawarma 1.png" alt="4" loading="lazy" decoding="async">
-      <img class="zoom-img a4" src="shawarma 3.png" alt="5" loading="lazy" decoding="async">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="shawarma 1.png" alt="4" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="shawarma 3.png" alt="5" loading="lazy" decoding="async" fetchpriority="low">
     </div>
 
     <div class="text-box">
@@ -2872,9 +2881,9 @@ I believe great design is more than just aesthetics — it is an experience that
 
   <div class="left">
     <div class="large-stack">
-      <img width="7680" height="4320" class="zoom-img large" src="shawarma 2.png" alt="6" loading="lazy" decoding="async">
-      <img width="7680" height="4320" class="zoom-img large" src="food brand.png" alt="7" loading="lazy" decoding="async">
-      <img width="7680" height="4320" class="zoom-img large" src="food brand 2.png" alt="8" loading="lazy" decoding="async">
+      <img width="7680" height="4320" class="zoom-img large" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="shawarma 2.png" alt="6" loading="lazy" decoding="async" fetchpriority="low">
+      <img width="7680" height="4320" class="zoom-img large" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="food brand.png" alt="7" loading="lazy" decoding="async" fetchpriority="low">
+      <img width="7680" height="4320" class="zoom-img large" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="food brand 2.png" alt="8" loading="lazy" decoding="async" fetchpriority="low">
     </div>
   </div>
 </section>
@@ -2889,12 +2898,12 @@ I believe great design is more than just aesthetics — it is an experience that
     </div>
 
     <div class="square-grid big-square-grid">
-      <img class="zoom-img square" src="smart watch.jpg" alt="9" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="smart watch 2.jpg" alt="10" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="smart phone poster.jpg" alt="11" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="SUNSCREAM POSTER.jpg" alt="12" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="GYM POSTER 2.jpg" alt="13" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="perfume social media poster.jpg" alt="14" loading="lazy" decoding="async">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="smart watch.jpg" alt="9" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="smart watch 2.jpg" alt="10" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="smart phone poster.jpg" alt="11" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="SUNSCREAM POSTER.jpg" alt="12" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="GYM POSTER 2.jpg" alt="13" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="perfume social media poster.jpg" alt="14" loading="lazy" decoding="async" fetchpriority="low">
     </div>
   </div>
 </section>
@@ -2902,12 +2911,12 @@ I believe great design is more than just aesthetics — it is an experience that
 <section class="section left" id="fashion-design">
   <div class="section3-wrap">
     <div class="a4-two">
-      <img class="zoom-img a4" src="cloth1.png" alt="15" loading="lazy" decoding="async">
-      <img class="zoom-img a4" src="cloth3.png" alt="16" loading="lazy" decoding="async">
-      <img class="zoom-img a4" src="cloth2.png" alt="17" loading="lazy" decoding="async">
-      <img class="zoom-img a4" src="cloth 5.png" alt="18" loading="lazy" decoding="async">
-      <img class="zoom-img a4" src="cloth 6.png" alt="19" loading="lazy" decoding="async">
-      <img class="zoom-img a4" src="cloth.png" alt="20" loading="lazy" decoding="async">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cloth1.png" alt="15" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cloth3.png" alt="16" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cloth2.png" alt="17" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cloth 5.png" alt="18" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cloth 6.png" alt="19" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="cloth.png" alt="20" loading="lazy" decoding="async" fetchpriority="low">
     </div>
 
     <div class="section3-text">
@@ -2932,20 +2941,20 @@ Each poster highlights the product clearly through stylish composition, premium 
 
     <div class="real-estate-gallery">
     <div class="real-estate-layout">
-      <img width="1080" height="1080" class="zoom-img real-slot real-top" src="real estate 3 poster.jpg" alt="21" loading="lazy" decoding="async">
+      <img width="1080" height="1080" class="zoom-img real-slot real-top" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="real estate 3 poster.jpg" alt="21" loading="lazy" decoding="async" fetchpriority="low">
 
-      <img width="1080" height="1080" class="zoom-img real-slot real-left-1" src="REALESTATE 4 (2).png" alt="22" loading="lazy" decoding="async">
-      <img class="zoom-img real-a4" src="REAL ESTATE.png" alt="23" loading="lazy" decoding="async">
-      <img width="1080" height="1080" class="zoom-img real-slot real-right-1" src="REAL ESTATE 2 POSTER.png" alt="24" loading="lazy" decoding="async">
+      <img width="1080" height="1080" class="zoom-img real-slot real-left-1" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="REALESTATE 4 (2).png" alt="22" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img real-a4" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="REAL ESTATE.png" alt="23" loading="lazy" decoding="async" fetchpriority="low">
+      <img width="1080" height="1080" class="zoom-img real-slot real-right-1" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="REAL ESTATE 2 POSTER.png" alt="24" loading="lazy" decoding="async" fetchpriority="low">
 
-      <img width="1080" height="1080" class="zoom-img real-slot real-left-2" src="plot 1.jpg" alt="25" loading="lazy" decoding="async">
-      <img width="1080" height="1080" class="zoom-img real-slot real-right-2" src="plot 2.png" alt="26" loading="lazy" decoding="async">
+      <img width="1080" height="1080" class="zoom-img real-slot real-left-2" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="plot 1.jpg" alt="25" loading="lazy" decoding="async" fetchpriority="low">
+      <img width="1080" height="1080" class="zoom-img real-slot real-right-2" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="plot 2.png" alt="26" loading="lazy" decoding="async" fetchpriority="low">
 
-      <img width="1080" height="1080" class="zoom-img real-slot real-bottom" src="plot 1.jpg" alt="27" loading="lazy" decoding="async">
+      <img width="1080" height="1080" class="zoom-img real-slot real-bottom" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="plot 1.jpg" alt="27" loading="lazy" decoding="async" fetchpriority="low">
     </div>
 
     <div class="real-large-wrap">
-      <img width="7680" height="2560" class="zoom-img real-large-bottom" src="plot 4.png" alt="28" loading="lazy" decoding="async">
+      <img width="7680" height="2560" class="zoom-img real-large-bottom" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="plot 4.png" alt="28" loading="lazy" decoding="async" fetchpriority="low">
     </div>
     </div>
 </div>
@@ -2954,15 +2963,15 @@ Each poster highlights the product clearly through stylish composition, premium 
 <section class="section" id="travel-campaign">
   <div class="section5-wrap">
     <div class="square-grid portfolio-grid">
-      <img class="zoom-img square" src="TRAVEL POSTER.jpg" alt="28" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="TRAVEL POSTER 2.jpg" alt="29" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="travel poster 3.jpg" alt="30" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="TRAVELPOSTE 4.jpg" alt="31" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="business markiting poster.jpg" alt="32" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="study abroad 1.jpg" alt="33" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="study abroad 2.jpg" alt="34" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="study abroad 3.jpg" alt="35" loading="lazy" decoding="async">
-      <img class="zoom-img square" src="study abroad 4.jpg" alt="36" loading="lazy" decoding="async">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="TRAVEL POSTER.jpg" alt="28" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="TRAVEL POSTER 2.jpg" alt="29" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="travel poster 3.jpg" alt="30" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="TRAVELPOSTE 4.jpg" alt="31" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="business markiting poster.jpg" alt="32" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="study abroad 1.jpg" alt="33" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="study abroad 2.jpg" alt="34" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="study abroad 3.jpg" alt="35" loading="lazy" decoding="async" fetchpriority="low">
+      <img class="zoom-img square" src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%229%22%20viewBox%3D%220%200%2016%209%22%3E%3C/svg%3E" data-src="study abroad 4.jpg" alt="36" loading="lazy" decoding="async" fetchpriority="low">
     </div>
 
     <div class="section5-text">
@@ -3146,10 +3155,18 @@ window.addEventListener("load", scaleFullSite);
 window.addEventListener("resize", scaleFullSite);
 window.addEventListener("orientationchange", () => setTimeout(scaleFullSite, 300));
 
-document.querySelectorAll("img").forEach((img) => {
-  img.addEventListener("load", scaleFullSite);
-});
 
+let scaleTimer = null;
+function requestScaleUpdate() {
+  clearTimeout(scaleTimer);
+  scaleTimer = setTimeout(() => {
+    if (typeof scaleFullSite === "function") scaleFullSite();
+  }, 120);
+}
+
+document.addEventListener("load", (e) => {
+  if (e.target && e.target.tagName === "IMG") requestScaleUpdate();
+}, true);
 setTimeout(scaleFullSite, 300);
 setTimeout(scaleFullSite, 1000);
 setTimeout(scaleFullSite, 2000);
@@ -3167,18 +3184,15 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 
-/* Movie + Flyers heavy image lazy loader */
+/* Global smart image lazy loader — website first load onek fast hobe */
 (function () {
-  const lazyImages = document.querySelectorAll("#movie-artwork img[data-src], #flyers-design img[data-src]");
+  const lazyImages = document.querySelectorAll("img[data-src]");
   if (!lazyImages.length) return;
 
   function loadImg(img) {
     if (!img.dataset.src) return;
     img.src = img.dataset.src;
     img.removeAttribute("data-src");
-    img.addEventListener("load", function () {
-      if (typeof scaleFullSite === "function") scaleFullSite();
-    }, { once: true });
   }
 
   if ("IntersectionObserver" in window) {
@@ -3189,7 +3203,10 @@ window.addEventListener("DOMContentLoaded", () => {
           obs.unobserve(entry.target);
         }
       });
-    }, { rootMargin: "900px 0px" });
+    }, {
+      rootMargin: "700px 0px",
+      threshold: 0.01
+    });
 
     lazyImages.forEach((img) => observer.observe(img));
   } else {
